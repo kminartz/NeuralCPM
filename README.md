@@ -1,4 +1,4 @@
-# neuralCPM: Deep Neural Cellular Potts Models
+# NeuralCPM: Deep Neural Cellular Potts Models
 This is the repository accompanying the paper [Deep Neural Cellular Potts Models](https://openreview.net/forum?id=3xznpzabYQ).
 
 
