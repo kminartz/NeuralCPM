@@ -1,0 +1,10 @@
+numpy==1.26.4
+pandas==2.2.2
+ml_collections==0.1.1
+equinox==0.11.4
+optax==0.2.3
+matplotlib==3.9.1
+wandb
+plotly
+tueplots==0.0.17
+git+https://github.com/datapythonista/mnist.git
