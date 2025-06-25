@@ -8,7 +8,7 @@ To download the code and install the dependencies, run:
 ```
 git clone https://github.com/kminartz/NeuralCPM
 pip install jax==0.4.30
-pip install requirements.txt
+pip install -r requirements.txt
 ```
 
 For GPU acceleration, you may need to adapt the above to install a GPU accelerated version compatible with your hardware, see [these instructions](https://docs.jax.dev/en/latest/installation.html).
