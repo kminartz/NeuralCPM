@@ -58,7 +58,7 @@ If you found this work interesting, consider citing our paper:
 
 ```
 @inproceedings{
-minartz2025deep,
+minartz2025neuralcpm,
 title={Deep Neural Cellular Potts Models},
 author={Koen Minartz and Tim d'Hondt and Leon Hillmann and J{\"o}rn Starru{\ss} and Lutz Brusch and Vlado Menkovski},
 booktitle={Forty-second International Conference on Machine Learning},
