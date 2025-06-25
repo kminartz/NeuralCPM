@@ -11,7 +11,7 @@ pip install jax==0.4.30
 pip install -r requirements.txt
 ```
 
-For GPU acceleration, you may need to adapt the above to install a GPU accelerated version compatible with your hardware, see [these instructions](https://docs.jax.dev/en/latest/installation.html).
+For GPU acceleration, you may need to adapt the above, see [these instructions](https://docs.jax.dev/en/latest/installation.html).
 
 You can run the following commands to quickly check if your install seems to work correctly:
 
