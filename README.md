@@ -32,7 +32,7 @@ To train a model, run a command like below:
 python train_ebm.py <config_name> --<change_parameter>=<new_value>
 ```
 
-where <config_name> is a python module name in configs.py, and <change_parameter> and <new_value> optionally specify parameters to be changed to their new value. For example:
+where <config_name> is a python module name from the configs directory, and <change_parameter> and <new_value> optionally specify parameters to be changed to their new value. For example:
 
 ```
 python train_ebm.py experiment_1 --model_name=nh --num_mcs=0.25
