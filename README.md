@@ -22,7 +22,14 @@ python -m unittest sampling/test_samplers.py
 
 # Data
 
-Datasets can be generated using the bash scripts in the data_generation directory. The synthetic data generation for the bi-polar axial organization experiment relies on a [Morpheus](https://morpheus.gitlab.io/) plugin which is not yet publicly available at the time of publishing.
+Datasets can be generated using the bash scripts in the 
+data_generation directory.
+The synthetic data generation for the bi-polar axial organization 
+experiment requires the open source software Morpheus to be installed 
+from https://morpheus.gitlab.io and then the model file 
+main/data_generation/Morpheus_model_bipolar.xml can be run from command line, 
+script or GUI.
+
 
 # Training
 

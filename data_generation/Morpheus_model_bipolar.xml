@@ -1,0 +1,101 @@
+<MorpheusModel version="4">
+    <Description>
+        <Title>Training data for bipolar sorting</Title>
+        <Details>Authors: K. Minartz, T. d'Hondt, L. Hillmann, J. Starruß, L. Brusch, V. Menkovski
+Date: 2025-01-01 
+Software: Morpheus (open source). Download from: https://morpheus.gitlab.io
+Reference:
+K. Minartz, T. d'Hondt, L. Hillmann, J. Starruß, L. Brusch, V. Menkovski. Deep Neural Cellular Potts Models. ICML 2025. https://icml.cc/virtual/2025/poster/46513 and Proceedings of the 42 nd International Conference on Machine Learning, Vancouver, Canada. PMLR 267, 2025.
+Comment:
+This model uses a phenomenological rule "DirectedMotion" inside CellType instead of a biologically realistic mechanism to achieve segregation of "yellow" cells into opposite poles and "red" cells into the center. Such synthetic training data can then be reproduced by our Deep Neural Cellular Potts Model with an overall Hamiltonian and without the phenomenological rule "DirectedMotion".</Details>
+    </Description>
+    <Global/>
+    <Space>
+        <SpaceSymbol symbol="l"/>
+        <Lattice class="square">
+            <Size symbol="size" value="200, 200, 0"/>
+            <BoundaryConditions>
+                <Condition type="periodic" boundary="x"/>
+                <Condition type="periodic" boundary="y"/>
+            </BoundaryConditions>
+            <Neighborhood>
+                <Order>2</Order>
+            </Neighborhood>
+        </Lattice>
+    </Space>
+    <Time>
+        <StartTime value="0"/>
+        <StopTime value="2000"/>
+        <TimeSymbol symbol="time"/>
+    </Time>
+    <CellTypes>
+        <CellType name="medium" class="medium"/>
+        <CellType name="ct1" class="biological">
+            <VolumeConstraint target="150" strength="1"/>
+            <DirectedMotion strength="0.1" direction="sign(size.x/2-cell.center.x)*((cell.center.x&lt;size.x*0.4)or(cell.center.x>size.x*0.6)), 0.0, 0.0"/>
+        </CellType>
+        <CellType name="ct2" class="biological">
+            <VolumeConstraint target="150" strength="1"/>
+            <DirectedMotion strength="0.1" direction="sign(cell.center.x-size.x/2)*(cell.center.x>size.x*0.4)*(cell.center.x&lt;size.x*0.6), 0.0, 0.0"/>
+        </CellType>
+    </CellTypes>
+    <CPM>
+        <Interaction default="0.0">
+            <Contact type2="medium" type1="ct1" value="16"/>
+            <Contact type2="medium" type1="ct2" value="16"/>
+            <Contact type2="ct1" type1="ct1" value="6"/>
+            <Contact type2="ct2" type1="ct2" value="6"/>
+            <Contact type2="ct2" type1="ct1" value="16"/>
+        </Interaction>
+        <MonteCarloSampler stepper="edgelist">
+            <MCSDuration value="1"/>
+            <Neighborhood>
+                <Order>2</Order>
+            </Neighborhood>
+            <MetropolisKinetics temperature="2"/>
+        </MonteCarloSampler>
+        <ShapeSurface scaling="norm">
+            <Neighborhood>
+                <Order>6</Order>
+            </Neighborhood>
+        </ShapeSurface>
+    </CPM>
+    <CellPopulations>
+        <Population type="ct1" size="0">
+            <InitCircle mode="random" number-of-cells="25">
+                <Dimensions center="size.x/2, size.y/2, 0" radius="size.x/6"/>
+            </InitCircle>
+        </Population>
+        <Population type="ct2" size="0">
+            <InitCircle mode="random" number-of-cells="25">
+                <Dimensions center="size.x/2, size.y/2, 0" radius="size.x/6"/>
+            </InitCircle>
+        </Population>
+    </CellPopulations>
+    <Analysis>
+        <Gnuplotter time-step="50" name="without cell outlines" decorate="false">
+            <Terminal name="png" size="200, 200, 0"/>
+            <Plot>
+                <Field symbol-ref="cell.type">
+                    <ColorMap>
+                        <Color color="black" value="0"/>
+                        <Color color="red" value="1"/>
+                        <Color color="yellow" value="2"/>
+                    </ColorMap>
+                </Field>
+            </Plot>
+        </Gnuplotter>
+        <Gnuplotter time-step="50" name="with cell outlines" decorate="false">
+            <Terminal name="png" size="200, 200, 0"/>
+            <Plot>
+                <Cells flooding="true" value="cell.type">
+                    <ColorMap>
+                        <Color color="red" value="0"/>
+                        <Color color="yellow" value="1"/>
+                    </ColorMap>
+                </Cells>
+            </Plot>
+        </Gnuplotter>
+        <ModelGraph include-tags="#untagged" format="svg" reduced="false"/>
+    </Analysis>
+</MorpheusModel>
