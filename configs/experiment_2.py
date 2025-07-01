@@ -103,12 +103,12 @@ def model_and_model_config_exp2(model_config_key):
                                 bias_J=jnp.array([2.0]),
                                 gamma_J=jnp.array([(jnp.log(jnp.e - 1.))]),  # softplus of this is 1.0
                                 interaction_params=dict({
-                                    "1-1": jnp.array([1.56]),
-                                    "1-2": jnp.array([1.21]),
-                                    "0-0": jnp.array([0.0]),
-                                    "0-1": jnp.array([2.26]),
-                                    "0-2": jnp.array([2.79]),
-                                    "2-2": jnp.array([2.71]),
+                                    "1-1": jnp.array([1.56]) - 2,
+                                    "1-2": jnp.array([1.21]) - 2,
+                                    "0-0": jnp.array([0.0]) - 2,
+                                    "0-1": jnp.array([2.26]) - 2,
+                                    "0-2": jnp.array([2.79]) - 2,
+                                    "2-2": jnp.array([2.71]) - 2,
                                 }),
                                 v_pref=jnp.array([150]),
                                 lamb=jnp.array([jnp.log(jnp.e ** 0.05 - 1)]),  # softplus of this is 0.02
