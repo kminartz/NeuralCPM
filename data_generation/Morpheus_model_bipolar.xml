@@ -13,7 +13,7 @@ This model uses a phenomenological rule "DirectedMotion" inside CellType instead
     <Space>
         <SpaceSymbol symbol="l"/>
         <Lattice class="square">
-            <Size symbol="size" value="200, 200, 0"/>
+            <Size symbol="size" value="149, 149, 0"/>
             <BoundaryConditions>
                 <Condition type="periodic" boundary="x"/>
                 <Condition type="periodic" boundary="y"/>
@@ -32,11 +32,11 @@ This model uses a phenomenological rule "DirectedMotion" inside CellType instead
         <CellType name="medium" class="medium"/>
         <CellType name="ct1" class="biological">
             <VolumeConstraint target="150" strength="1"/>
-            <DirectedMotion strength="0.1" direction="sign(size.x/2-cell.center.x)*((cell.center.x&lt;size.x*0.4)or(cell.center.x>size.x*0.6)), 0.0, 0.0"/>
+            <DirectedMotion strength="0.2" direction="sign(size.x/2-cell.center.x)*((cell.center.x&lt;size.x*0.4)or(cell.center.x>size.x*0.6)), 0.0, 0.0"/>
         </CellType>
         <CellType name="ct2" class="biological">
             <VolumeConstraint target="150" strength="1"/>
-            <DirectedMotion strength="0.1" direction="sign(cell.center.x-size.x/2)*(cell.center.x>size.x*0.4)*(cell.center.x&lt;size.x*0.6), 0.0, 0.0"/>
+            <DirectedMotion strength="0.2" direction="sign(cell.center.x-size.x/2)*(cell.center.x>size.x*0.4)*(cell.center.x&lt;size.x*0.6), 0.0, 0.0"/>
         </CellType>
     </CellTypes>
     <CPM>
@@ -62,19 +62,19 @@ This model uses a phenomenological rule "DirectedMotion" inside CellType instead
     </CPM>
     <CellPopulations>
         <Population type="ct1" size="0">
-            <InitCircle mode="random" number-of-cells="25">
+            <InitCircle mode="random" number-of-cells="20">
                 <Dimensions center="size.x/2, size.y/2, 0" radius="size.x/6"/>
             </InitCircle>
         </Population>
         <Population type="ct2" size="0">
-            <InitCircle mode="random" number-of-cells="25">
+            <InitCircle mode="random" number-of-cells="20">
                 <Dimensions center="size.x/2, size.y/2, 0" radius="size.x/6"/>
             </InitCircle>
         </Population>
     </CellPopulations>
     <Analysis>
         <Gnuplotter time-step="50" name="without cell outlines" decorate="false">
-            <Terminal name="png" size="200, 200, 0"/>
+            <Terminal name="png" size="149, 149, 0"/>
             <Plot>
                 <Field symbol-ref="cell.type">
                     <ColorMap>
@@ -86,7 +86,7 @@ This model uses a phenomenological rule "DirectedMotion" inside CellType instead
             </Plot>
         </Gnuplotter>
         <Gnuplotter time-step="50" name="with cell outlines" decorate="false">
-            <Terminal name="png" size="200, 200, 0"/>
+            <Terminal name="png" size="149, 149, 0"/>
             <Plot>
                 <Cells flooding="true" value="cell.type">
                     <ColorMap>
